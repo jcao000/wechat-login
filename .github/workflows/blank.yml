@@ -30,7 +30,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Run a one-line script
+      - name: Run script
         run: |
           echo ${{ secrets.ENV_NAME }} > ./test.log
           cat ./test.log
+      - name: Upload test
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-log
+          path: ./test.log
